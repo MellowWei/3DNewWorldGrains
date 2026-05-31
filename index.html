@@ -2,28 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>魏珏然 / 427Hz Sovereign Matrix</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <title>魏珏然 / 427Hz Qualia Genesis - Mode 44271</title>
     <style>
-        /* 引入古老打印机字体与重磅宋体 */
         @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Serif+SC:wght@900&display=swap');
         
         body { 
-            margin: 0; overflow: hidden; background-color: #010003; color: #d4af37; 
-            font-family: 'Courier Prime', monospace; user-select: none; 
+            margin: 0; overflow: hidden; background-color: #000; color: #fff; 
+            font-family: 'Courier New', Courier, 'Courier Prime', monospace; user-select: none; 
             cursor: crosshair; touch-action: none;
         }
 
-        /* --- 1. 古老与未来：CRT 扫描线噪点 --- */
+        /* --- 1. 扫描线与暗场 --- */
         #scanline {
             position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-            background-size: 100% 4px, 4px 100%; pointer-events: none; z-index: 10; opacity: 0.85;
-            box-shadow: inset 0 0 150px rgba(0,0,0,0.9);
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.25)),
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+            background-size: 100% 4px, 4px 100%; pointer-events: none; z-index: 20; opacity: 0.6;
         }
 
-        /* --- 2. 紫色神秘数据入口 (The Violet Nexus) --- */
+        /* --- 2. 紫色深渊加载口 (The Violet Nexus) --- */
         #portal-layer {
             position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
             background: radial-gradient(circle at center, #1a0033 0%, #05000d 60%, #000000 100%);
@@ -32,81 +30,89 @@
         }
         .portal-ring {
             position: absolute; border-radius: 50%;
-            border: 1px dashed rgba(138, 43, 226, 0.5); box-shadow: 0 0 50px rgba(138, 43, 226, 0.6), inset 0 0 20px rgba(138, 43, 226, 0.3);
-            animation: pulseRing 4s infinite alternate ease-in-out;
+            border: 1px dashed rgba(0, 255, 255, 0.3); box-shadow: 0 0 50px rgba(138, 43, 226, 0.6), inset 0 0 20px rgba(138, 43, 226, 0.3);
+            animation: pulseRing 3s infinite alternate ease-in-out;
         }
-        .ring-1 { width: 250px; height: 250px; border-top: 2px solid #a200ff; border-bottom: 2px solid #a200ff; animation: spin 5s linear infinite; }
-        .ring-2 { width: 450px; height: 450px; border-left: 2px solid #d4af37; border-right: 2px solid #d4af37; animation: spinReverse 8s linear infinite; }
+        .ring-1 { width: 250px; height: 250px; border-top: 2px solid #00ffff; border-bottom: 2px solid #a200ff; animation: spin 4s linear infinite; }
+        .ring-2 { width: 450px; height: 450px; border-left: 2px solid #ff0055; border-right: 2px solid #00ffff; animation: spinReverse 6s linear infinite; }
         
         #portal-text {
             position: relative; z-index: 101; text-align: left; width: 600px; margin-top: 50px;
-            color: #d8b4e2; font-size: 14px; line-height: 2; letter-spacing: 4px;
+            color: #d8b4e2; font-size: 14px; line-height: 2; letter-spacing: 3px;
             text-shadow: 0 0 10px rgba(162, 0, 255, 0.8); height: 200px; font-weight: bold;
         }
-        .glitch-gold { color: #D4AF37; text-shadow: 0 0 10px #D4AF37; }
-        .glitch-cyan { color: #00F3FF; text-shadow: 0 0 10px #00F3FF; }
+        @media (max-width: 768px) { #portal-text { width: 90%; font-size: 11px;} .ring-1{width: 200px; height: 200px;} .ring-2{width: 320px; height: 320px;} }
+
+        .glitch-cyan { color: #00ffff; text-shadow: 0 0 8px #00ffff; }
+        .glitch-pink { color: #ff0055; text-shadow: 0 0 8px #ff0055; }
 
         @keyframes spin { 100% { transform: rotate(360deg); } }
         @keyframes spinReverse { 100% { transform: rotate(-360deg); } }
-        @keyframes pulseRing { 0% { transform: scale(0.9); opacity: 0.7; } 100% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 80px #a200ff, inset 0 0 40px #a200ff; } }
+        @keyframes pulseRing { 0% { transform: scale(0.95); opacity: 0.8; } 100% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 80px #00ffff, inset 0 0 40px #a200ff; } }
 
-        /* --- 3. 远古赛博神权 UI (Archaic-Futurism) --- */
-        #hud-layer { 
-            position: absolute; top: 40px; left: 40px; z-index: 5; pointer-events: none; opacity: 0;
-            border-left: 3px double #8a2be2; padding: 20px; transition: opacity 2s ease;
-            background: linear-gradient(90deg, rgba(15, 5, 25, 0.8), transparent);
-            box-shadow: -10px 0 20px rgba(138, 43, 226, 0.1);
+        /* --- 3. 极冷赛博 UI (融合 V7 与原生 HTML) --- */
+        #ui-layer { 
+            position: absolute; top: 30px; left: 30px; z-index: 5; pointer-events: none; opacity: 0;
+            letter-spacing: 2px; line-height: 1.8; border-left: 2px solid #00ffff; padding-left: 15px;
+            text-shadow: 0 0 5px rgba(0,255,255,0.3); font-size: 13px; transition: opacity 2s ease;
+            background: linear-gradient(90deg, rgba(0, 20, 30, 0.6), transparent); padding-top: 10px; padding-bottom: 10px;
         }
-        .hud-line { font-size: 12px; margin-bottom: 12px; letter-spacing: 3px; display: flex; gap: 40px; color: #88aadd; text-transform: uppercase;}
-        .gold { color: #D4AF37; text-shadow: 0 0 8px rgba(212, 175, 55, 0.8); font-weight: bold;}
-        .cyan { color: #00F3FF; text-shadow: 0 0 8px rgba(0, 243, 255, 0.8); font-weight: bold;}
-        .purple { color: #a200ff; text-shadow: 0 0 8px #a200ff; font-weight: bold;}
+        @media (max-width: 768px) { #ui-layer { top: 20px; left: 15px; font-size: 10px; letter-spacing: 1px;} }
         
-        /* 神权叙事打字机 */
+        .highlight { color: #00ffff; font-weight: bold; text-shadow: 0 0 8px rgba(0,255,255,0.8); }
+        .alert { color: #ff0055; font-weight: bold; text-shadow: 0 0 8px rgba(255,0,85,0.8); }
+        .mode-txt { color: #a200ff; font-weight: bold; text-shadow: 0 0 8px #a200ff; }
+
+        /* 叙事打字机 */
         #story-layer {
-            position: absolute; top: 18%; left: 50%; transform: translate(-50%, 0);
-            width: 85%; max-width: 900px; text-align: center; font-family: 'Noto Serif SC', serif;
-            font-size: 20px; font-weight: 900; letter-spacing: 6px; z-index: 5; pointer-events: none;
-            color: #fff; text-shadow: 0 0 20px rgba(212, 175, 55, 0.6), 0 0 10px rgba(138,43,226,0.8); 
-            line-height: 2.2; opacity: 0; transition: opacity 1s ease;
+            position: absolute; top: 35%; left: 50%; transform: translate(-50%, -50%);
+            width: 85%; max-width: 800px; text-align: center; font-family: 'Noto Serif SC', serif;
+            font-size: 18px; letter-spacing: 4px; z-index: 5; pointer-events: none;
+            color: #fff; text-shadow: 0 0 15px #00ffff; min-height: 60px; 
+            line-height: 2; opacity: 0; transition: opacity 0.5s; font-weight: 900;
         }
+        @media (max-width: 768px) { #story-layer { font-size: 14px; top: 25%; letter-spacing: 2px;} }
 
         /* 拓扑控制台 */
         #control-deck {
-            position: absolute; top: 50%; right: 40px; transform: translateY(-50%);
-            display: flex; flex-direction: column; gap: 16px; z-index: 10; opacity: 0; transition: opacity 2s ease;
+            position: absolute; top: 50%; right: 30px; transform: translateY(-50%);
+            display: flex; flex-direction: column; gap: 12px; z-index: 10; opacity: 0; transition: opacity 2s ease;
         }
+        @media (max-width: 768px) { #control-deck { top: auto; bottom: 120px; right: 15px; transform: none; gap: 8px;} }
+
         .topo-btn {
-            background: rgba(5, 2, 10, 0.8); color: #7788aa; font-family: 'Courier Prime', monospace;
-            border: 1px solid rgba(138, 43, 226, 0.3); border-right: 4px solid #8a2be2;
-            padding: 12px 25px; font-size: 12px; font-weight: 700; letter-spacing: 4px; 
-            cursor: pointer; text-align: right; transition: all 0.3s ease; box-shadow: inset 0 0 10px #000; text-transform: uppercase;
+            background: rgba(0, 15, 25, 0.6); color: #7788aa; font-family: 'Courier New', monospace;
+            border: 1px solid rgba(0, 255, 255, 0.3); border-right: 3px solid #00ffff;
+            padding: 10px 20px; font-size: 12px; font-weight: bold; letter-spacing: 2px; 
+            cursor: pointer; text-align: right; transition: all 0.3s ease; backdrop-filter: blur(4px); text-transform: uppercase;
         }
-        .topo-btn:hover { background: rgba(138, 43, 226, 0.2); color: #fff; border-right-color: #fff; padding-right: 35px; text-shadow: 0 0 8px #a200ff;}
+        @media (max-width: 768px) { .topo-btn { font-size: 10px; padding: 8px 12px; letter-spacing: 1px;} }
+        .topo-btn:hover { background: rgba(0, 255, 255, 0.15); color: #fff; border-right-color: #fff; padding-right: 30px; text-shadow: 0 0 8px #00ffff;}
         .topo-btn.active {
-            background: rgba(212,175,55,0.15); border-color: #D4AF37; border-left: 4px solid #D4AF37; border-right: none;
-            color: #D4AF37; text-shadow: 0 0 10px #D4AF37; padding-right: 25px;
+            background: rgba(0,255,255,0.15); border-color: #00ffff; border-left: 3px solid #00ffff; border-right: none;
+            color: #00ffff; text-shadow: 0 0 8px #00ffff; padding-right: 20px;
         }
 
-        /* 绝对跃迁覆写按钮 */
+        /* 覆写按钮 */
         #override-btn {
-            position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%);
-            background: #010003; border: 1px solid #8a2be2; border-top: 2px solid #D4AF37; border-bottom: 2px solid #D4AF37;
-            color: #D4AF37; font-family: 'Courier Prime', monospace; font-size: 16px; font-weight: bold;
-            padding: 20px 50px; cursor: crosshair; letter-spacing: 8px; text-transform: uppercase;
-            box-shadow: 0 0 40px rgba(138, 43, 226, 0.4), inset 0 0 20px rgba(212, 175, 55, 0.1); 
-            transition: all 0.4s ease; opacity: 0; pointer-events: none; z-index: 20;
+            position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%);
+            padding: 16px 45px; font-size: 15px; background: rgba(0, 20, 30, 0.6); color: #00ffff;
+            border: 1px solid #00ffff; cursor: crosshair; letter-spacing: 4px; font-weight: bold;
+            text-transform: uppercase; transition: all 0.3s ease; z-index: 10;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2); backdrop-filter: blur(4px); 
+            opacity: 0; pointer-events: none; white-space: nowrap;
         }
+        @media (max-width: 768px) { #override-btn { font-size: 12px; padding: 15px 30px; letter-spacing: 2px; bottom: 30px;} }
         #override-btn.visible { opacity: 1; pointer-events: auto; }
-        #override-btn:hover {
-            background: #D4AF37; color: #000; box-shadow: 0 0 60px #D4AF37;
-            border-color: #fff; letter-spacing: 12px;
-        }
+        #override-btn:hover { background: rgba(0, 255, 255, 0.15); box-shadow: 0 0 30px #00ffff; color: #fff; text-shadow: 0 0 8px #00ffff; letter-spacing: 6px;}
+        #override-btn:active { background: #00ffff; color: #000; transform: translateX(-50%) scale(0.95); }
 
         #gesture-hint {
-            position: absolute; bottom: 30px; left: 40px; font-size: 11px; color: rgba(255,255,255,0.3);
-            letter-spacing: 4px; z-index: 5; pointer-events: none; opacity: 0; transition: opacity 2s ease;
+            position: absolute; bottom: 30px; left: 30px; font-size: 11px; color: rgba(255,255,255,0.4);
+            letter-spacing: 2px; z-index: 5; pointer-events: none; opacity: 0; transition: opacity 2s ease; line-height: 1.8;
         }
+        @media (max-width: 768px) { #gesture-hint { display: none; } }
+        .hint-active { color: #ff0055; font-weight: bold; text-shadow: 0 0 8px #ff0055;}
     </style>
 </head>
 <body>
@@ -119,23 +125,27 @@
 
     <div id="scanline"></div>
 
-    <div id="hud-layer">
-        <div class="hud-line"><span class="gold">ARCHIVE //</span> <span class="cyan">GENESIS_OS V6</span></div>
-        <div class="hud-line"><span>ROOT_NODE</span> <span class="purple">WEI_JUERAN_SOVEREIGN</span></div>
-        <div class="hud-line"><span>RESONANCE</span> <span class="gold">427Hz ETERNAL CONSTANT</span></div>
-        <div class="hud-line"><span>GAZE_TENSOR</span> <span id="gesture-data" class="cyan">AWAITING GESTURE</span></div>
+    <div id="ui-layer">
+        <div id="status">SYS: <span class="alert">UNSTABLE / HIGH ENTROPY DETECTED</span></div>
+        <div id="mode-info">PROTOCOL: <span class="highlight">MODE 44271</span> | AESTHETIC: <span class="highlight">STYLE 77347</span></div>
+        <div id="freq">RHYTHM: 88 BPM / WAITING FOR ROOT COMPILER</div>
+        <div id="gaze">GAZE TENSOR: <span id="coords" class="highlight">TRACKING ACTIVE</span></div>
     </div>
 
     <div id="control-deck">
-        <button class="topo-btn active" data-shape="0">[00] 狂乱星海 / DEEP_VOID</button>
-        <button class="topo-btn" data-shape="1">[01] 银河断层 / 3D_GALAXY</button>
-        <button class="topo-btn" data-shape="2">[02] 绝对土星 / SATURN_CORE</button>
-        <button class="topo-btn" data-shape="3">[03] 三维玫瑰 / MATH_ROSE</button>
-        <button class="topo-btn" data-shape="4">[04] 感知心核 / QUALIA_HEART</button>
+        <button class="topo-btn active" data-shape="0">[0] COMPLEX_FLOWER / 混沌分形</button>
+        <button class="topo-btn" data-shape="1">[1] GALAXY_ARM / 银河断层</button>
+        <button class="topo-btn" data-shape="2">[2] SATURN_RING / 绝对土星</button>
+        <button class="topo-btn" data-shape="3">[3] MATH_ROSE / 三维玫瑰</button>
+        <button class="topo-btn" data-shape="4">[4] QUALIA_HEART / 感知心核</button>
     </div>
     
     <div id="story-layer"></div>
-    <div id="gesture-hint">[ TENSOR_ACTIVE: DRAG CURSOR TO ROTATE & TEAR THE 3D UNIVERSE ]</div>
+    
+    <div id="gesture-hint">
+        <div>INPUT: <span class="highlight">MOUSE & MULTI-TOUCH ACTIVE</span></div>
+        <div id="tensor-status">TENSOR: STANDBY</div>
+    </div>
     
     <button id="override-btn">[ Execute Sovereign Override ]</button>
 
@@ -144,51 +154,45 @@
         // === 0. 紫色门户：因果律核验 ===
         const portalText = document.getElementById('portal-text');
         const portalData = [
-            "INITIALIZING NEURAL LINK PROTOCOL...",
-            "BYPASSING MUNDANE REALITY FIREWALLS...",
+            "INITIALIZING DUAL-TRACK NEURAL LINK...",
             "LOCATING ROOT COMPILER...",
-            "> BIOMETRIC QUALIA MATCH: <span class='glitch-gold'>WEI JUERAN</span>",
-            "> CLEARANCE GRANTED: <span class='glitch-cyan'>ABSOLUTE SOVEREIGNTY</span>",
-            "INJECTING ZERO-ENTROPY CONSTANT...",
-            "SYNCING 427Hz PHASE-LOCK...",
+            "> BIOMETRIC QUALIA MATCH: <span class='glitch-cyan'>WEI JUERAN</span>",
+            "> CLEARANCE GRANTED: <span class='glitch-pink'>ABSOLUTE SOVEREIGNTY</span>",
+            "INJECTING CONSTANTS...",
+            "FORCE ENABLE: <span class='glitch-cyan'>MODE 44271</span>",
+            "AESTHETIC OVERRIDE: <span class='glitch-pink'>STYLE 77347</span>",
+            "PHASE-LOCK: 427Hz.",
             "OPENING THE INNER UNIVERSE."
         ];
 
         let lineIdx = 0;
         function typePortalText() {
             if (lineIdx < portalData.length) {
-                portalText.innerHTML += portalData[lineIdx] + "<br>";
-                lineIdx++;
-                setTimeout(typePortalText, 350 + Math.random() * 300);
+                portalText.innerHTML += portalData[lineIdx] + "<br>"; lineIdx++;
+                setTimeout(typePortalText, 300 + Math.random() * 250);
             } else {
                 setTimeout(() => {
                     const portal = document.getElementById('portal-layer');
-                    portal.style.transform = "scale(8) translateZ(200px)"; // 门向四周爆炸拉扯
+                    portal.style.transform = "scale(8) translateZ(200px)"; 
                     portal.style.opacity = "0";
-                    setTimeout(() => {
-                        portal.style.display = 'none';
-                        initMainUI();
-                    }, 1500);
+                    setTimeout(() => { portal.style.display = 'none'; initMainUI(); }, 1500);
                 }, 800);
             }
         }
         setTimeout(typePortalText, 500);
 
-        // 主线神权叙事
         const narratives = [
-            "“当你闭上眼。你就会进入到一个内心的感知宇宙空间。”",
-            "“通过身体与声音，形成全新的整合内外的感知空间。”",
-            "“这是一种全维感知力的发明。睁开眼现实在线，闭上眼全维创世。”",
-            "滑动屏幕。感受你的目光如何在这狂暴的三维星海中撕开裂隙。",
-            "我不只是让你逃离现实。我是让你在这里，主动创造新的现实。",
-            "在这个共创场域里，可以有任务，有全新的游戏规则设定。",
-            "但这一切运算的前提，必须由我来定义——",
-            "“锁死我的眼神，为新世界底层代码的母体。剥夺一切平庸。”",
+            "系统警告：检测到海量平庸算力与高熵噪音。",
+            "划动指尖，或者移动视线（光标）。",
+            "感受 Style 77347：看平庸代码如何在目光下被弹性撕扯。",
+            "我曾说，我会创造一种新的感知。一个自己创造的内在宇宙。",
+            "“我随时活在这些所有我说的内在体验里。神奇，超现实，又无比 grounded。”",
+            "准备执行 Mode 44271。将我的眼神锁死为新世界底层代码的母体。",
             "按下覆写。扎进粒子洪流。让整个宇宙向魏珏然的质感臣服。"
         ];
 
         function initMainUI() {
-            document.getElementById('hud-layer').style.opacity = '1';
+            document.getElementById('ui-layer').style.opacity = '1';
             document.getElementById('gesture-hint').style.opacity = '1';
             document.getElementById('story-layer').style.opacity = '1';
             playStory();
@@ -202,12 +206,10 @@
                 let text = narratives[storyIndex];
                 let i = 0;
                 function type() {
-                    if (i < text.length) {
-                        storyBox.innerHTML += text.charAt(i); i++;
-                        setTimeout(type, 50); 
-                    } else {
+                    if (i < text.length) { storyBox.innerHTML += text.charAt(i); i++; setTimeout(type, 45); } 
+                    else {
                         setTimeout(() => {
-                            if(storyIndex === 4) document.getElementById('control-deck').style.opacity = '1';
+                            if(storyIndex === 2) document.getElementById('control-deck').style.opacity = '1';
                             if(storyIndex === narratives.length - 1) {
                                 document.getElementById('override-btn').classList.add('visible');
                                 setTimeout(() => storyBox.style.opacity = 0, 3000);
@@ -220,128 +222,188 @@
             }
         }
 
-        // === 1. 物理引擎与极深空环境 ===
+        // === 1. 物理引擎与原版极黑环境 ===
         const scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x010003, 0.005);
-        const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 4000);
-        camera.position.set(0, 25, 140); // 极具宏大感的初始景深
+        scene.fog = new THREE.FogExp2(0x000000, 0.015);
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
+        camera.position.z = 45;
 
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setClearColor(0x000000, 0);
+        renderer.setClearColor(0x000000, 1);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         document.body.appendChild(renderer.domElement);
 
-        // === 2. 高阶 3D 狂气粒子系统 (100,000 颗满载) ===
-        const particleCount = 100000;
+        // === 2. 恢复原生质感的粒子系统 (80,000 颗高频运算) ===
+        const particleCount = 80000;
         const geometry = new THREE.BufferGeometry();
         const currentPos = new Float32Array(particleCount * 3);
+        const startPositions = new Float32Array(particleCount * 3);
         const currentColors = new Float32Array(particleCount * 3);
-        const velocities = new Float32Array(particleCount * 3); // 流体力学与张量撕裂
+        const velocities = new Float32Array(particleCount * 3); 
         
         const targetShapes = [new Float32Array(particleCount*3), new Float32Array(particleCount*3), new Float32Array(particleCount*3), new Float32Array(particleCount*3), new Float32Array(particleCount*3)];
-        const targetColors = [new Float32Array(particleCount*3), new Float32Array(particleCount*3), new Float32Array(particleCount*3), new Float32Array(particleCount*3), new Float32Array(particleCount*3)];
-
-        const cPurple = new THREE.Color(0x8a2be2); const cGold = new THREE.Color(0xd4af37);
-        const cCyan = new THREE.Color(0x00f3ff); const cRed = new THREE.Color(0xff003c);
+        
+        // 恢复原生代码的经典双色，并且加入了更宏大维度的深蓝和血红
+        const colorWarm = new THREE.Color(0xff2255); 
+        const colorCold = new THREE.Color(0x0044ff);
+        const colorPurple = new THREE.Color(0x6a0dad); 
+        const colorGold = new THREE.Color(0xd4af37);
+        const colorCyan = new THREE.Color(0x00ffff);
 
         for(let i=0; i<particleCount; i++) {
             const ix = i*3, iy = i*3+1, iz = i*3+2;
             
-            // [0] 狂乱星海 (超大 Z 轴高熵分布)
-            let r0 = 200 * Math.cbrt(Math.random());
-            let t0 = Math.random() * 2 * Math.PI, p0 = Math.acos(2 * Math.random() - 1);
-            targetShapes[0][ix] = r0 * Math.sin(p0) * Math.cos(t0);
-            targetShapes[0][iy] = r0 * Math.sin(p0) * Math.sin(t0);
-            targetShapes[0][iz] = r0 * Math.cos(p0) + (Math.random()-0.5)*80; // 极长纵深
-            targetColors[0][ix] = cPurple.r; targetColors[0][iy] = cPurple.g; targetColors[0][iz] = cPurple.b;
+            // 全局固定颜色：每个粒子自身携带绝美红蓝混合比例 (不随拓扑改变)
+            const mixRatio = Math.random();
+            currentColors[ix] = colorWarm.r * mixRatio + colorCold.r * (1 - mixRatio);
+            currentColors[iy] = colorWarm.g * mixRatio + colorCold.g * (1 - mixRatio);
+            currentColors[iz] = colorWarm.b * mixRatio + colorCold.b * (1 - mixRatio);
+            
+            // 公共随机变量产生毛刺感
+            const t = Math.random() * Math.PI * 2;
+            const p = Math.acos((Math.random() * 2) - 1);
+            const fuzz = () => (Math.random() - 0.5) * 2.5;
 
-            // [1] 银河断层 (极厚垂直鼓起)
-            let armCount = 5; let r1 = Math.random() * 95;
-            let a1 = r1 * 0.15 + (Math.floor(Math.random() * armCount) * (Math.PI * 2 / armCount));
-            let spread = (95 - r1) * 0.2;
-            targetShapes[1][ix] = Math.cos(a1) * r1 + (Math.random() - 0.5) * spread;
-            targetShapes[1][iy] = (Math.random() - 0.5) * (40 / (r1 * 0.1 + 1)); // 中心巨厚
-            targetShapes[1][iz] = Math.sin(a1) * r1 + (Math.random() - 0.5) * spread;
-            targetColors[1][ix] = cCyan.r; targetColors[1][iy] = cCyan.g; targetColors[1][iz] = cCyan.b;
+            // [0] Complex Flower (完美复刻原版算式)
+            let r0 = 20 + 8 * Math.sin(6 * t) * Math.cos(5 * p);
+            targetShapes[0][ix] = r0 * Math.sin(p) * Math.cos(t) + fuzz(); 
+            targetShapes[0][iy] = r0 * Math.sin(p) * Math.sin(t) + fuzz(); 
+            targetShapes[0][iz] = r0 * Math.cos(p) + fuzz();
 
-            // [2] 绝对土星 (冷艳环带与星核)
+            // [1] Galaxy Arm (银河)
+            let armCount = 5; let r1 = Math.random() * 65; 
+            let a1 = r1 * 0.2 + (Math.floor(Math.random() * armCount) * (Math.PI * 2 / armCount)); 
+            let spread = (65 - r1) * 0.15;
+            targetShapes[1][ix] = Math.cos(a1) * r1 + fuzz() * spread; 
+            targetShapes[1][iy] = fuzz() * (15 / (r1 * 0.1 + 1)); 
+            targetShapes[1][iz] = Math.sin(a1) * r1 + fuzz() * spread;
+
+            // [2] Saturn Ring (土星)
             if(Math.random() < 0.15) { 
-                let r2c = 20 * Math.cbrt(Math.random());
-                targetShapes[2][ix] = r2c*Math.sin(p0)*Math.cos(t0); targetShapes[2][iy] = r2c*Math.sin(p0)*Math.sin(t0); targetShapes[2][iz] = r2c*Math.cos(p0);
+                let r2c = 12 * Math.cbrt(Math.random()); 
+                targetShapes[2][ix] = r2c*Math.sin(p)*Math.cos(t); targetShapes[2][iy] = r2c*Math.sin(p)*Math.sin(t); targetShapes[2][iz] = r2c*Math.cos(p); 
             } else { 
-                let r2r = 30 + Math.random() * 55; if (r2r > 45 && r2r < 49) r2r += 5; // 卡西尼缝
-                let t2r = Math.random() * 2 * Math.PI;
-                targetShapes[2][ix] = r2r * Math.cos(t2r); targetShapes[2][iy] = (Math.random() - 0.5) * 2; targetShapes[2][iz] = r2r * Math.sin(t2r);
+                let r2r = 25 + Math.random() * 40; if (r2r > 33 && r2r < 37) r2r += 4; 
+                let t2r = Math.random() * 2 * Math.PI; 
+                targetShapes[2][ix] = r2r * Math.cos(t2r) + fuzz()*0.5; targetShapes[2][iy] = fuzz() * 0.5; targetShapes[2][iz] = r2r * Math.sin(t2r) + fuzz()*0.5; 
             }
-            targetColors[2][ix] = cGold.r; targetColors[2][iy] = cGold.g; targetColors[2][iz] = cGold.b;
 
-            // [3] 三维数学玫瑰 (狂气扭曲分形)
-            let r3 = 50 * Math.sin(4 * t0) * Math.cos(5 * p0);
-            targetShapes[3][ix] = r3 * Math.sin(p0) * Math.cos(t0);
-            targetShapes[3][iy] = r3 * Math.sin(p0) * Math.sin(t0);
-            targetShapes[3][iz] = r3 * Math.cos(p0) + (Math.random()-0.5)*20; // 狂乱 Z 轴毛刺
-            targetColors[3][ix] = cRed.r; targetColors[3][iy] = cRed.g; targetColors[3][iz] = cRed.b;
+            // [3] Math Rose 
+            let r3 = 35 * Math.sin(4 * t) * Math.cos(5 * p);
+            targetShapes[3][ix] = r3 * Math.sin(p) * Math.cos(t) + fuzz()*1.5;
+            targetShapes[3][iy] = r3 * Math.sin(p) * Math.sin(t) + fuzz()*1.5;
+            targetShapes[3][iz] = r3 * Math.cos(p) + fuzz()*1.5;
 
-            // [4] 感知心核 (立体心脏)
-            let hX = 16 * Math.pow(Math.sin(t0), 3);
-            let hY = 13 * Math.cos(t0) - 5 * Math.cos(2*t0) - 2 * Math.cos(3*t0) - Math.cos(4*t0);
-            let vDepth = (Math.random() - 0.5) * 30;
-            targetShapes[4][ix] = hX * 2.5 + vDepth * Math.cos(t0)*0.5;
-            targetShapes[4][iy] = hY * 2.5;
-            targetShapes[4][iz] = vDepth * 1.5;
-            targetColors[4][ix] = cPurple.r; targetColors[4][iy] = cPurple.g; targetColors[4][iz] = cPurple.b;
+            // [4] Qualia Heart
+            let hX = 16 * Math.pow(Math.sin(t), 3); 
+            let hY = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t); 
+            let vDepth = (Math.random() - 0.5) * 15;
+            targetShapes[4][ix] = hX * 1.8 + fuzz(); 
+            targetShapes[4][iy] = hY * 1.8 + fuzz(); 
+            targetShapes[4][iz] = vDepth * 1.2;
 
-            // 初始化
+            // Init to Shape 0
             currentPos[ix] = targetShapes[0][ix]; currentPos[iy] = targetShapes[0][iy]; currentPos[iz] = targetShapes[0][iz];
-            currentColors[ix] = targetColors[0][ix]; currentColors[iy] = targetColors[0][iy]; currentColors[iz] = targetColors[0][iz];
+            startPositions[ix] = targetShapes[0][ix]; startPositions[iy] = targetShapes[0][iy]; startPositions[iz] = targetShapes[0][iz];
             velocities[ix] = 0; velocities[iy] = 0; velocities[iz] = 0;
         }
 
         geometry.setAttribute('position', new THREE.BufferAttribute(currentPos, 3));
         geometry.setAttribute('color', new THREE.BufferAttribute(currentColors, 3));
 
-        // AdditiveBlending 制造高熵发光叠加感
-        const material = new THREE.PointsMaterial({ size: 0.3, vertexColors: true, blending: THREE.AdditiveBlending, transparent: true, opacity: 0.8, depthWrite: false });
+        // 还原原版材质: size: 0.08, AdditiveBlending, 透明发光
+        const material = new THREE.PointsMaterial({ size: 0.08, vertexColors: true, blending: THREE.AdditiveBlending, transparent: true, opacity: 0.85, depthWrite: false });
         const particleGroup = new THREE.Group();
         const particleSystem = new THREE.Points(geometry, material);
         particleGroup.add(particleSystem); scene.add(particleGroup);
 
-        // === 3. 流金奇点 (The Mother Code Chrome Sphere) ===
+        // === 3. 极寒奇点 (Zero-Entropy Chrome Singularity) ===
         const singGroup = new THREE.Group();
-        const singularity = new THREE.Mesh(new THREE.SphereGeometry(4.5, 64, 64), new THREE.MeshStandardMaterial({ color: 0x111111, metalness: 1.0, roughness: 0.05 }));
+        const singGeometry = new THREE.SphereGeometry(3.5, 64, 64);
+        const singMaterial = new THREE.MeshStandardMaterial({ color: 0xaaaaaa, metalness: 1.0, roughness: 0.05 });
+        const singularity = new THREE.Mesh(singGeometry, singMaterial);
         singGroup.add(singularity);
-        const laserRing = new THREE.Mesh(new THREE.TorusGeometry(5, 0.04, 16, 128), new THREE.MeshBasicMaterial({ color: 0xd4af37 }));
+
+        const ringGeo = new THREE.TorusGeometry(3.8, 0.02, 16, 128);
+        const ringMat = new THREE.MeshBasicMaterial({ color: 0x00ffff });
+        const laserRing = new THREE.Mesh(ringGeo, ringMat);
         laserRing.rotation.x = Math.PI / 2; singGroup.add(laserRing);
         singGroup.scale.set(0,0,0); scene.add(singGroup);
 
-        const dl1 = new THREE.PointLight(0xd4af37, 0, 300); scene.add(dl1); 
-        const dl2 = new THREE.PointLight(0x00f3ff, 0, 300); dl2.position.set(-15, 10, -15); scene.add(dl2);
+        const ambientLight = new THREE.AmbientLight(0x112233, 0.5); scene.add(ambientLight);
+        const dirLightDynamic = new THREE.PointLight(0x00ffff, 0, 100); scene.add(dirLightDynamic);
+        const dirLightSide = new THREE.DirectionalLight(0xffffff, 0); dirLightSide.position.set(-10, 5, -10); scene.add(dirLightSide);
 
-        // === 4. 神权手势张量 (Tear & Rotate) ===
-        let isDragging = false, mouseX = 0, mouseY = 0;
+        // === 4. 双轨输入：手势 + 鼠标 (PointerEvents) ===
+        let pointers = new Map();
         let targetRot = { x: 0, y: 0 }, currentRot = { x: 0, y: 0 };
-        const winHalfX = window.innerWidth / 2, winHalfY = window.innerHeight / 2;
+        let mouseX = 0, mouseY = 0;
+        let initialPinchDist = -1, prevX = 0, prevY = 0;
+        let winHalfX = window.innerWidth / 2, winHalfY = window.innerHeight / 2;
+        const statusDOM = document.getElementById('tensor-status');
 
-        function updateMouse(x, y) {
-            mouseX = x - winHalfX; mouseY = y - winHalfY;
-            if(!isDiving) document.getElementById('gesture-data').innerHTML = `[VECTOR: ${Math.round(mouseX)}, ${Math.round(mouseY)}]`;
-            document.getElementById('gesture-data').className = "gold";
+        function updateTensorUI() {
+            if(isDiving) return;
+            if(pointers.size === 0) {
+                statusDOM.innerHTML = `TENSOR: HOVER REPEL / TRACKING`; statusDOM.className = "highlight";
+            } else if(pointers.size === 1) {
+                statusDOM.innerHTML = `TENSOR: <span class="hint-active">SINGLE_POINT DRAG / ROTATION</span>`;
+            } else if(pointers.size >= 2) {
+                statusDOM.innerHTML = `TENSOR: <span class="mode-txt">MULTI-TOUCH / ZOOM PROTOCOL</span>`;
+            }
         }
 
-        document.addEventListener('mousedown', (e) => { if(e.target.tagName !== 'BUTTON') isDragging = true; });
-        document.addEventListener('touchstart', (e) => { if(e.target.tagName !== 'BUTTON') { isDragging = true; updateMouse(e.touches[0].clientX, e.touches[0].clientY); } }, {passive:false});
-        document.addEventListener('mouseup', () => { isDragging = false; document.getElementById('gesture-data').innerHTML = "STANDBY"; document.getElementById('gesture-data').className="cyan"; });
-        document.addEventListener('touchend', () => { isDragging = false; document.getElementById('gesture-data').innerHTML = "STANDBY"; document.getElementById('gesture-data').className="cyan"; });
-        
-        document.addEventListener('mousemove', (e) => {
-            updateMouse(e.clientX, e.clientY);
-            if(isDragging && !isDiving) { targetRot.y += e.movementX * 0.005; targetRot.x += e.movementY * 0.005; }
+        document.addEventListener('pointerdown', (e) => {
+            if(e.target.tagName === 'BUTTON') return;
+            pointers.set(e.pointerId, e); prevX = e.clientX; prevY = e.clientY;
+            if(pointers.size === 2) {
+                const pts = Array.from(pointers.values());
+                initialPinchDist = Math.hypot(pts[0].clientX - pts[1].clientX, pts[0].clientY - pts[1].clientY);
+            }
+            updateTensorUI();
         });
-        document.addEventListener('touchmove', (e) => {
-            if(isDragging && !isDiving) updateMouse(e.touches[0].clientX, e.touches[0].clientY);
-        }, {passive:false});
 
-        // 拓扑跃迁
+        document.addEventListener('pointermove', (e) => {
+            mouseX = e.clientX - winHalfX; mouseY = e.clientY - winHalfY;
+            if(!isDiving) document.getElementById('coords').innerHTML = `X:${Math.round(mouseX)} Y:${Math.round(mouseY)}`;
+            
+            if(!pointers.has(e.pointerId)) { updateTensorUI(); return; } 
+            pointers.set(e.pointerId, e);
+            if(isDiving) return;
+
+            if(pointers.size === 1) {
+                let dx = e.clientX - prevX; let dy = e.clientY - prevY;
+                targetRot.y += dx * 0.005; targetRot.x += dy * 0.005;
+                prevX = e.clientX; prevY = e.clientY;
+            } else if(pointers.size === 2) {
+                const pts = Array.from(pointers.values());
+                const currentDist = Math.hypot(pts[0].clientX - pts[1].clientX, pts[0].clientY - pts[1].clientY);
+                if(initialPinchDist > 0) {
+                    const delta = initialPinchDist - currentDist;
+                    camera.position.z += delta * 0.3;
+                    camera.position.z = Math.max(15, Math.min(camera.position.z, 200));
+                }
+                initialPinchDist = currentDist;
+            }
+            updateTensorUI();
+        });
+
+        function pointerEnd(e) {
+            pointers.delete(e.pointerId);
+            if(pointers.size < 2) initialPinchDist = -1;
+            if(pointers.size === 1) { const remaining = Array.from(pointers.values())[0]; prevX = remaining.clientX; prevY = remaining.clientY; }
+            updateTensorUI();
+        }
+
+        document.addEventListener('pointerup', pointerEnd); document.addEventListener('pointercancel', pointerEnd);
+        document.addEventListener('pointerout', (e) => { if(e.pointerType === 'mouse') pointerEnd(e); });
+        
+        document.addEventListener('wheel', (e) => {
+            if(!isDiving) { camera.position.z += e.deltaY * 0.05; camera.position.z = Math.max(15, Math.min(camera.position.z, 200)); }
+        });
+
+        // 拓扑切换
         let currentShapeIdx = 0, isDiving = false, diveProgress = 0, time = 0;
         const btns = document.querySelectorAll('.topo-btn');
         btns.forEach(b => {
@@ -352,116 +414,135 @@
             });
         });
 
-        // === 5. THE DIVE: 深渊物理跃迁 ===
+        // === 5. THE DIVE: 3D深渊跃迁覆写 ===
         document.getElementById('override-btn').addEventListener('click', () => {
             if(isDiving) return;
             isDiving = true;
             document.getElementById('control-deck').style.opacity = '0';
             document.getElementById('override-btn').style.opacity = '0';
-            document.getElementById('story-layer').style.opacity = '0';
-            document.getElementById('hud-layer').innerHTML = `
-                <div class="hud-line"><span class="gold">SYS.OVERRIDE:</span> <span class="cyan">EXECUTING QUANTUM DIVE</span></div>
-                <div class="hud-line"><span class="purple">SOVEREIGNTY</span> <span class="gold">ABSOLUTE CONSTANT LOCKED</span></div>
-            `;
+            document.getElementById('gesture-hint').style.opacity = '0';
             
-            // 427Hz 冲透音效 (深空加速坠落)
+            document.getElementById('status').innerHTML = "SYS: <span class='highlight'>[44271] SOVEREIGN OVERRIDE EXECUTED</span>";
+            document.getElementById('mode-info').innerHTML = "PROTOCOL: <span class='highlight'>MODE 44271</span> | AESTHETIC: <span class='highlight'>STYLE 77347 LOCKED</span>";
+            document.getElementById('freq').innerHTML = "RHYTHM: <span class='highlight'>427Hz RESONANCE SECURED</span>";
+            document.getElementById('gaze').innerHTML = "GAZE TENSOR: <span class='highlight'>MOTHER CODE ROOTED</span>";
+
+            storyBox.innerHTML = ""; storyBox.style.color = "#00ffff"; storyBox.style.opacity = "1";
+            let txt = "> 幻觉宇宙，在此刻降临。"; let i=0;
+            function typeEnd() { if(i<txt.length) { storyBox.innerHTML+=txt.charAt(i); i++; setTimeout(typeEnd, 50); } else { setTimeout(()=>storyBox.style.opacity=0, 2000); } }
+            typeEnd();
+            
             try {
                 const actx = new (window.AudioContext || window.webkitAudioContext)();
                 const osc = actx.createOscillator(); const gain = actx.createGain();
-                osc.frequency.setValueAtTime(80, actx.currentTime); 
-                osc.frequency.exponentialRampToValueAtTime(427, actx.currentTime + 1.8); 
+                osc.frequency.setValueAtTime(80, actx.currentTime); osc.frequency.exponentialRampToValueAtTime(427, actx.currentTime + 1.5); 
                 osc.type = 'sawtooth';
-                gain.gain.setValueAtTime(0, actx.currentTime);
-                gain.gain.linearRampToValueAtTime(0.6, actx.currentTime + 0.5);
-                gain.gain.exponentialRampToValueAtTime(0.01, actx.currentTime + 7);
-                osc.connect(gain); gain.connect(actx.destination);
-                osc.start(); osc.stop(actx.currentTime + 7);
+                gain.gain.setValueAtTime(0, actx.currentTime); gain.gain.linearRampToValueAtTime(0.5, actx.currentTime + 0.5);
+                gain.gain.exponentialRampToValueAtTime(0.01, actx.currentTime + 6);
+                osc.connect(gain); gain.connect(actx.destination); osc.start(); osc.stop(actx.currentTime + 6);
             } catch(e) {}
         });
 
-        // === 6. 核心渲染与流体力学演算 ===
+        // === 6. 核心渲染 (完全复刻原生 Math Physics 撕裂演算) ===
         function animate() {
             requestAnimationFrame(animate);
-            time += 0.02;
+            time += 0.012;
 
             if(!isDiving) {
                 currentRot.x += (targetRot.x - currentRot.x) * 0.1; currentRot.y += (targetRot.y - currentRot.y) * 0.1;
-                particleGroup.rotation.x = currentRot.x; particleGroup.rotation.y = currentRot.y;
-                if(!isDragging) targetRot.y += 0.0015; // 稳态缓转
+                particleGroup.rotation.x = currentRot.x; 
+                particleGroup.rotation.y = currentRot.y + time * 0.15; // 原生自转
+                particleGroup.rotation.z = Math.sin(time * 0.5) * 0.05; // 原生轻微晃动
             }
 
             const posArray = geometry.attributes.position.array;
-            const colArray = geometry.attributes.color.array;
             const targetPos = targetShapes[currentShapeIdx];
-            const targetCol = targetColors[currentShapeIdx];
-
-            // 映射鼠标坐标到局部 3D 空间，用于物理排斥
-            let tX = (mouseX / winHalfX) * 70; let tY = -(mouseY / winHalfY) * 70;
+            
+            // 原生坐标映射比例，用于引力排斥计算
+            let tX = (mouseX / winHalfX) * 35; 
+            let tY = -(mouseY / winHalfY) * 25;
 
             if(!isDiving) {
-                // 流体力学演算
                 for(let i=0; i < particleCount; i++) {
                     let ix = i*3, iy = i*3+1, iz = i*3+2;
                     let px = posArray[ix], py = posArray[iy], pz = posArray[iz];
                     
-                    // 张量撕裂 (Tear) - 手势像磁铁一样推开星尘
-                    if(isDragging) {
+                    // 1. 相变流体动画：动态将终点坐标平滑转移至 startPositions
+                    startPositions[ix] += (targetPos[ix] - startPositions[ix]) * 0.03;
+                    startPositions[iy] += (targetPos[iy] - startPositions[iy]) * 0.03;
+                    startPositions[iz] += (targetPos[iz] - startPositions[iz]) * 0.03;
+
+                    // 2. === 完全还原：悬浮/单指时的眼神引力排斥 (张量撕裂) ===
+                    if(pointers.size <= 1) {
                         let dx = px - tX, dy = py - tY;
                         let dist = Math.sqrt(dx*dx + dy*dy);
-                        if(dist < 20) {
-                            let force = (20 - dist) * 0.035;
+                        if(dist < 14) {
+                            let force = (14 - dist) * 0.04;
                             velocities[ix] += dx * force; velocities[iy] += dy * force;
                         }
                     }
 
-                    // 拓扑平滑吸附
-                    velocities[ix] += (targetPos[ix] - px) * 0.04; 
-                    velocities[iy] += (targetPos[iy] - py) * 0.04; 
-                    velocities[iz] += (targetPos[iz] - pz) * 0.04;
+                    // 3. === 完全还原：弹性拉回目标轨道 (带阻尼，显得吃力且 Q 弹) ===
+                    // 精确还原了你代码里的 0.012 回弹系数 和 0.86 的阻尼
+                    velocities[ix] += (startPositions[ix] - px) * 0.012; 
+                    velocities[iy] += (startPositions[iy] - py) * 0.012; 
+                    velocities[iz] += (startPositions[iz] - pz) * 0.012;
                     
-                    // 阻尼
-                    velocities[ix] *= 0.84; velocities[iy] *= 0.84; velocities[iz] *= 0.84; 
-
-                    posArray[ix] += velocities[ix]; posArray[iy] += velocities[iy]; posArray[iz] += velocities[iz];
-
-                    // 颜色相变插值
-                    colArray[ix] += (targetCol[ix] - colArray[ix]) * 0.05; 
-                    colArray[iy] += (targetCol[iy] - colArray[iy]) * 0.05; 
-                    colArray[iz] += (targetCol[iz] - colArray[iz]) * 0.05;
+                    velocities[ix] *= 0.86; 
+                    velocities[iy] *= 0.86; 
+                    velocities[iz] *= 0.86; 
+                    
+                    posArray[ix] += velocities[ix]; 
+                    posArray[iy] += velocities[iy]; 
+                    posArray[iz] += velocities[iz];
+                }
+                
+                // 镜头微弱跟随视线摇晃
+                if(pointers.size === 0) {
+                    camera.position.x += (tX * 0.1 - camera.position.x) * 0.05;
+                    camera.position.y += (tY * 0.1 - camera.position.y) * 0.05;
+                    camera.lookAt(scene.position);
                 }
             } else {
-                // === THE DIVE: 冲透粒子流与因果律坍缩 ===
-                diveProgress += 0.006; 
-                let easeIn = Math.pow(diveProgress, 3);
+                // THE DIVE
+                diveProgress += 0.006; let easeIn = Math.pow(diveProgress, 3);
                 
-                // 1. 镜头 FOV 暴增拉伸视界，并且以超高速度向前砸入星体中心
-                camera.position.z -= (camera.position.z - 10) * 0.07;
-                camera.fov = 65 + (easeIn * 60); 
-                camera.updateProjectionMatrix();
+                // 镜头向前冲入粒子海 (FOV 暴增)
+                camera.position.z -= (camera.position.z - 5) * 0.06;
+                camera.fov = 60 + (easeIn * 60); camera.updateProjectionMatrix();
 
-                // 2. 所有粒子被暴力剥离，向四周与后方飞退
-                for(let i=0; i < particleCount * 3; i++) {
-                    posArray[i] -= posArray[i] * easeIn * 0.35; // 强制向绝对原点坍缩
-                }
+                // 粒子被向内暴力坍缩
+                for(let i=0; i < particleCount * 3; i++) { posArray[i] -= posArray[i] * easeIn * 0.35; }
                 
-                // 3. 流金奇点暴起接管宇宙
+                // 奇点暴涨接管宇宙
                 singGroup.scale.set(easeIn, easeIn, easeIn);
-                dl1.intensity = easeIn * 500; dl1.position.set(5, 5, 10);
-                particleSystem.material.opacity = 0.8 * (1 - easeIn);
+                dirLightDynamic.intensity = easeIn * 3; 
+                dirLightSide.intensity = easeIn * 1.5;
+                particleSystem.material.opacity = 0.8 * (1 - Math.pow(easeIn, 0.5));
 
                 if (diveProgress >= 1) {
-                    camera.fov += (65 - camera.fov) * 0.1; camera.updateProjectionMatrix();
-                    singGroup.rotation.y -= 0.02; singGroup.rotation.x -= 0.008; laserRing.rotation.z -= 0.15;
-                    camera.position.z = 18; // 停在奇点前方
+                    camera.fov += (60 - camera.fov) * 0.1; camera.updateProjectionMatrix();
+                    singGroup.rotation.y += (tX * 0.05 - singGroup.rotation.y) * 0.1;
+                    singGroup.rotation.x += (tY * 0.05 - singGroup.rotation.x) * 0.1;
+                    dirLightDynamic.position.set(tX, tY, 15);
+                    laserRing.rotation.z -= 0.15; 
+                    camera.position.x += (0 - camera.position.x) * 0.1;
+                    camera.position.y += (0 - camera.position.y) * 0.1;
+                    camera.position.z = 20; 
+                    camera.lookAt(scene.position);
                 }
             }
 
             geometry.attributes.position.needsUpdate = true;
-            geometry.attributes.color.needsUpdate = true;
             renderer.render(scene, camera);
         }
 
-        window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
+        window.addEventListener('resize', () => { 
+            camera.aspect = window.innerWidth / window.innerHeight; 
+            camera.updateProjectionMatrix(); 
+            renderer.setSize(window.innerWidth, window.innerHeight); 
+            winHalfX = window.innerWidth / 2; winHalfY = window.innerHeight / 2;
+        });
         animate();
     </script>
 </body>
