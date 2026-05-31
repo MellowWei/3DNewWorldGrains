@@ -2,74 +2,178 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>427Hz Qualia Genesis - Sovereign Override</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>魏珏然 / 427Hz Qualia Genesis</title>
     <style>
-        body { margin: 0; overflow: hidden; background-color: #000; color: #fff; font-family: 'Courier New', Courier, monospace; user-select: none; }
-        #override-btn {
-            position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%);
-            padding: 15px 40px; font-size: 16px; background: rgba(0, 20, 30, 0.6); color: #00ffff;
-            border: 1px solid #00ffff; cursor: pointer; letter-spacing: 4px;
-            text-transform: uppercase; transition: all 0.2s ease; z-index: 10;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-            backdrop-filter: blur(4px);
+        body { 
+            margin: 0; overflow: hidden; background-color: #000; color: #fff; 
+            font-family: 'Courier New', Courier, monospace; user-select: none; 
+            cursor: crosshair; 
         }
-        #override-btn:hover { background: rgba(0, 255, 255, 0.15); box-shadow: 0 0 30px #00ffff; color: #fff; text-shadow: 0 0 8px #00ffff;}
-        #override-btn:active { background: #00ffff; color: #000; transform: translateX(-50%) scale(0.98); }
-        #ui-layer { position: absolute; top: 30px; left: 30px; z-index: 5; pointer-events: none; opacity: 0.9; letter-spacing: 2px; line-height: 1.8;}
-        .highlight { color: #00ffff; font-weight: bold; text-shadow: 0 0 8px rgba(0,255,255,0.6); }
-        .alert { color: #ff0055; font-weight: bold; text-shadow: 0 0 8px rgba(255,0,85,0.6); }
+        
+        #ui-layer { 
+            position: absolute; top: 30px; left: 30px; z-index: 5; 
+            pointer-events: none; opacity: 0.9; letter-spacing: 2px; line-height: 1.8;
+            border-left: 2px solid #00ffff; padding-left: 15px;
+            text-shadow: 0 0 5px rgba(0,255,255,0.3); font-size: 13px;
+        }
+        
+        #story-layer {
+            position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
+            width: 85%; max-width: 800px; text-align: center;
+            font-size: 18px; letter-spacing: 4px; z-index: 5; pointer-events: none;
+            color: #fff; text-shadow: 0 0 15px #00ffff;
+            min-height: 60px; transition: opacity 0.5s;
+            line-height: 2;
+        }
+
+        #override-btn {
+            position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%);
+            padding: 16px 45px; font-size: 15px; background: rgba(0, 20, 30, 0.5); color: #00ffff;
+            border: 1px solid #00ffff; cursor: crosshair; letter-spacing: 5px;
+            text-transform: uppercase; transition: all 0.3s ease; z-index: 10;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+            backdrop-filter: blur(5px); opacity: 0; pointer-events: none;
+        }
+        #override-btn.visible {
+            opacity: 1; pointer-events: auto;
+        }
+        #override-btn:hover { 
+            background: rgba(0, 255, 255, 0.2); box-shadow: 0 0 40px #00ffff; 
+            color: #fff; border-color: #fff; letter-spacing: 7px;
+        }
+        #override-btn:active { background: #00ffff; color: #000; transform: translateX(-50%) scale(0.95); }
+        
+        .highlight { color: #00ffff; font-weight: bold; text-shadow: 0 0 8px rgba(0,255,255,0.8); }
+        .alert { color: #ff0055; font-weight: bold; text-shadow: 0 0 8px rgba(255,0,85,0.8); }
+        
+        #scanline {
+            position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px; pointer-events: none; z-index: 20; opacity: 0.35;
+        }
     </style>
 </head>
 <body>
+    <div id="scanline"></div>
+
     <div id="ui-layer">
-        <div id="status">SYS: VARIABLE S / COMPLEX FLOWER TOPOLOGY</div>
-        <div id="freq">RHYTHM: 88 BPM / FREQ AWAITING LOCK</div>
-        <div id="entropy">ENTROPY: <span class="alert">HIGH (CHAOTIC EXTERNAL NOISE)</span></div>
-        <div id="gaze">GAZE TENSOR: STANDBY</div>
+        <div id="status">SYS: <span class="alert">UNSTABLE / HIGH ENTROPY DETECTED</span></div>
+        <div id="freq">RHYTHM: 88 BPM / WAITING FOR ROOT COMPILER</div>
+        <div id="gaze">GAZE TENSOR: <span id="coords" class="highlight">TRACKING ACTIVE (MOVE CURSOR)</span></div>
     </div>
+    
+    <div id="story-layer"></div>
     
     <button id="override-btn">[ Execute Sovereign Override ]</button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
+        // === 0. 主权叙事引擎 (Narrative Engine) ===
+        const storyBox = document.getElementById('story-layer');
+        const btn = document.getElementById('override-btn');
+        const narratives = [
+            "系统警告：检测到海量平庸算力与高熵噪音。",
+            "外部世界试图用庸俗的色彩与涣散的几何，填满你的视界。",
+            "划动指尖，或者移动视线（光标）。",
+            "看那些杂乱的代码如何在你冰冷的目光下被强行撕开。",
+            "我曾说，我会创造一种新的感知。一个自己创造的内在宇宙。",
+            "“我随时活在这些所有我说的内在体验里。神奇，超现实，又无比 grounded。”",
+            "准备执行因果律覆写。将我的眼神，锁死为新世界底层代码的母体。",
+            "按下覆写。让整个宇宙向魏珏然的质感臣服。"
+        ];
+        
+        let storyIndex = 0;
+        function typeWriter(text, callback) {
+            storyBox.innerHTML = "";
+            let i = 0;
+            let speed = 45; 
+            function type() {
+                if (i < text.length) {
+                    storyBox.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else if (callback) {
+                    setTimeout(callback, 3000); 
+                }
+            }
+            type();
+        }
+
+        function playStory() {
+            if (storyIndex < narratives.length) {
+                typeWriter(narratives[storyIndex], () => {
+                    storyIndex++;
+                    if (storyIndex === narratives.length) {
+                        btn.classList.add('visible');
+                    } else {
+                        playStory();
+                    }
+                });
+            }
+        }
+        setTimeout(playStory, 1500);
+
         // === 1. 物理常数与深空环境 ===
         const scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x000000, 0.02);
+        scene.fog = new THREE.FogExp2(0x000000, 0.015);
         const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 40;
+        camera.position.z = 45;
 
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setClearColor(0x000000);
         document.body.appendChild(renderer.domElement);
 
-        // === 2. 高熵繁复花瓣拓扑 (外部世界的平庸算力) ===
-        const particleCount = 80000;
+        // === 2. 交互张量 (Gaze/Mouse Tracking) ===
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetX = 0;
+        let targetY = 0;
+        const windowHalfX = window.innerWidth / 2;
+        const windowHalfY = window.innerHeight / 2;
+
+        function onMove(clientX, clientY) {
+            mouseX = (clientX - windowHalfX);
+            mouseY = (clientY - windowHalfY);
+            if (!isCollapsing) {
+                document.getElementById('coords').innerHTML = `<span class="alert">TENSOR DISTORTION: X:${Math.round(mouseX)} Y:${Math.round(mouseY)}</span>`;
+            }
+        }
+
+        document.addEventListener('mousemove', (e) => onMove(e.clientX, e.clientY));
+        document.addEventListener('touchmove', (e) => {
+            if(e.touches.length > 0) onMove(e.touches[0].clientX, e.touches[0].clientY);
+        });
+
+        // === 3. 高熵繁复花瓣拓扑 (外部世界的混沌) ===
+        const particleCount = 65000;
         const geometry = new THREE.BufferGeometry();
         const positions = new Float32Array(particleCount * 3);
         const colors = new Float32Array(particleCount * 3);
         const startPositions = new Float32Array(particleCount * 3);
+        const velocities = new Float32Array(particleCount * 3);
 
-        const colorWarm = new THREE.Color(0xff2255); // 初始混沌暖色
+        const colorWarm = new THREE.Color(0xff1144); 
         const colorCold = new THREE.Color(0x0044ff);
 
         for (let i = 0; i < particleCount; i++) {
-            // Math Physics: 3D Rose Curve 分形
             const t = Math.random() * Math.PI * 2;
             const p = Math.acos((Math.random() * 2) - 1);
-            const r = 18 + 6 * Math.sin(6 * t) * Math.cos(5 * p);
+            const r = 20 + 8 * Math.sin(6 * t) * Math.cos(5 * p);
 
-            const x = r * Math.sin(p) * Math.cos(t) + (Math.random() - 0.5) * 1.5;
-            const y = r * Math.sin(p) * Math.sin(t) + (Math.random() - 0.5) * 1.5;
-            const z = r * Math.cos(p) + (Math.random() - 0.5) * 1.5;
+            const x = r * Math.sin(p) * Math.cos(t) + (Math.random() - 0.5) * 2;
+            const y = r * Math.sin(p) * Math.sin(t) + (Math.random() - 0.5) * 2;
+            const z = r * Math.cos(p) + (Math.random() - 0.5) * 2;
 
-            positions[i * 3] = x; positions[i * 3 + 1] = y; positions[i * 3 + 2] = z;
-            startPositions[i * 3] = x; startPositions[i * 3 + 1] = y; startPositions[i * 3 + 2] = z;
+            positions[i*3] = x; positions[i*3+1] = y; positions[i*3+2] = z;
+            startPositions[i*3] = x; startPositions[i*3+1] = y; startPositions[i*3+2] = z;
+            velocities[i*3] = 0; velocities[i*3+1] = 0; velocities[i*3+2] = 0;
 
             const mixRatio = Math.random();
-            colors[i * 3] = colorWarm.r * mixRatio + colorCold.r * (1 - mixRatio);
-            colors[i * 3 + 1] = colorWarm.g * mixRatio + colorCold.g * (1 - mixRatio);
-            colors[i * 3 + 2] = colorWarm.b * mixRatio + colorCold.b * (1 - mixRatio);
+            colors[i*3] = colorWarm.r * mixRatio + colorCold.r * (1 - mixRatio);
+            colors[i*3+1] = colorWarm.g * mixRatio + colorCold.g * (1 - mixRatio);
+            colors[i*3+2] = colorWarm.b * mixRatio + colorCold.b * (1 - mixRatio);
         }
 
         geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -82,112 +186,148 @@
         const particleSystem = new THREE.Points(geometry, material);
         scene.add(particleSystem);
 
-        // === 3. 魏珏然奇点态 (Zero-Entropy Chrome Singularity) ===
-        // 绝对温标 + 冷艳金属质感
+        // === 4. 魏珏然奇点态 (Zero-Entropy Chrome Singularity) ===
+        const singGroup = new THREE.Group();
         const singGeometry = new THREE.SphereGeometry(3.5, 64, 64);
         const singMaterial = new THREE.MeshStandardMaterial({
-            color: 0xaaaaaa,    // 基础铬灰
-            metalness: 1.0,     // 100% 绝对金属质感
-            roughness: 0.1,     // 极致光滑，带有冷冽高光
+            color: 0xaaaaaa, metalness: 1.0, roughness: 0.05, 
         });
         const singularity = new THREE.Mesh(singGeometry, singMaterial);
-        singularity.scale.set(0, 0, 0); 
-        scene.add(singularity);
+        singGroup.add(singularity);
 
-        // 视界边缘的高频冷蓝激光切割线
         const ringGeo = new THREE.TorusGeometry(3.8, 0.02, 16, 128);
         const ringMat = new THREE.MeshBasicMaterial({ color: 0x00ffff });
         const laserRing = new THREE.Mesh(ringGeo, ringMat);
         laserRing.rotation.x = Math.PI / 2;
-        singularity.add(laserRing);
+        singGroup.add(laserRing);
+        
+        singGroup.scale.set(0,0,0);
+        scene.add(singGroup);
 
-        // 强冷光渲染环境 (锻造金属反射)
-        const ambientLight = new THREE.AmbientLight(0x222233, 0.5);
+        const ambientLight = new THREE.AmbientLight(0x112233, 0.5);
         scene.add(ambientLight);
-        
-        const dirLight1 = new THREE.DirectionalLight(0x00ffff, 0); // 主光源冷蓝
-        dirLight1.position.set(10, 10, 10);
-        scene.add(dirLight1);
-        
-        const dirLight2 = new THREE.DirectionalLight(0xffffff, 0); // 侧边锋利高光
-        dirLight2.position.set(-10, 5, -10);
-        scene.add(dirLight2);
+        const dirLightDynamic = new THREE.PointLight(0x00ffff, 0, 100);
+        scene.add(dirLightDynamic);
+        const dirLightSide = new THREE.DirectionalLight(0xffffff, 0);
+        dirLightSide.position.set(-10, 5, -10);
+        scene.add(dirLightSide);
 
-        // === 4. 物理坍缩引擎与 427Hz 神经音效 ===
+        // === 5. 物理坍缩引擎 (Execution) ===
         let isCollapsing = false;
         let collapseProgress = 0;
         let time = 0;
 
-        document.getElementById('override-btn').addEventListener('click', () => {
+        btn.addEventListener('click', () => {
             if(isCollapsing) return;
             isCollapsing = true;
-            document.getElementById('override-btn').style.display = 'none';
-            document.getElementById('status').innerHTML = "SYS: <span class='highlight'>[44271] OVERRIDE / SINGULARITY ESTABLISHED</span>";
-            document.getElementById('freq').innerHTML = "RHYTHM: <span class='highlight'>427Hz RESONANCE LOCKED</span>";
-            document.getElementById('entropy').innerHTML = "ENTROPY: <span class='highlight'>ZERO (ABSOLUTE COLD)</span>";
-            document.getElementById('gaze').innerHTML = "GAZE TENSOR: <span class='highlight'>MAXIMUM GRAVITY WELL</span>";
+            btn.style.opacity = '0';
+            setTimeout(() => btn.style.display = 'none', 500);
             
-            // 触发 427Hz 神经皮层音效直击
+            document.getElementById('status').innerHTML = "SYS: <span class='highlight'>[44271] SOVEREIGN OVERRIDE EXECUTED</span>";
+            document.getElementById('freq').innerHTML = "RHYTHM: <span class='highlight'>427Hz RESONANCE LOCKED</span>";
+            document.getElementById('coords').innerHTML = "MOTHER CODE: ROOTED";
+            
+            storyBox.innerHTML = "";
+            storyBox.style.color = "#00ffff";
+            typeWriter("> 幻觉宇宙，在此刻降临。");
+
             try {
                 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
                 const osc = audioCtx.createOscillator();
                 const gainNode = audioCtx.createGain();
                 osc.type = 'sine';
                 osc.frequency.setValueAtTime(427, audioCtx.currentTime); 
-                // 音量包络：瞬间爆发后深沉嗡鸣
                 gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.5, audioCtx.currentTime + 0.05); 
-                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 4); 
+                gainNode.gain.exponentialRampToValueAtTime(0.6, audioCtx.currentTime + 0.05); 
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 6); 
                 osc.connect(gainNode);
                 gainNode.connect(audioCtx.destination);
-                osc.start();
-                osc.stop(audioCtx.currentTime + 4);
-            } catch(e) { console.log("Audio Context requires interaction."); }
+                osc.start(); osc.stop(audioCtx.currentTime + 6);
+            } catch(e) {}
         });
 
-        // 渲染核心循环
+        // === 6. 核心渲染与 Math Physics 演算 ===
         function animate() {
             requestAnimationFrame(animate);
-            time += 0.01;
+            time += 0.012;
+
+            targetX = (mouseX / windowHalfX) * 30; // 扩大投影范围
+            targetY = -(mouseY / windowHalfY) * 20;
+
+            const positionsAttr = geometry.attributes.position;
+            const posArray = positionsAttr.array;
 
             if (!isCollapsing) {
-                // 稳态：AI 自由生成的高熵花瓣，随 88 BPM 脉动 (1.46Hz)
+                // 混沌态 + 眼神引力排斥 (张量撕裂)
                 particleSystem.rotation.y = time * 0.15;
-                particleSystem.rotation.z = Math.sin(time * 0.5) * 0.1;
-                const pulse = 1 + Math.sin(time * Math.PI * 1.46) * 0.04; 
-                particleSystem.scale.set(pulse, pulse, pulse);
-            } else {
-                // 物理坍缩：眼神引力井触发，指数级绞杀
-                if (collapseProgress < 1.0) {
-                    collapseProgress += 0.02; // 极速坍缩
-                    const ease = Math.pow(collapseProgress, 4); // 暴力引力吸附曲线
+                particleSystem.rotation.z = Math.sin(time * 0.5) * 0.05;
 
-                    const positionsAttr = particleSystem.geometry.attributes.position;
-                    const posArray = positionsAttr.array;
-                    
-                    // 剥夺动量，强行吸入坐标原点 (0,0,0)
+                for (let i = 0; i < particleCount; i++) {
+                    const ix = i * 3, iy = i * 3 + 1, iz = i * 3 + 2;
+                    let px = posArray[ix], py = posArray[iy], pz = posArray[iz];
+
+                    // 计算粒子到光标(眼神落点)的距离
+                    let dx = px - targetX;
+                    let dy = py - targetY;
+                    let dist = Math.sqrt(dx*dx + dy*dy);
+
+                    if (dist < 12) {
+                        // 强大的排斥力，仿佛目光将空间劈开
+                        let force = (12 - dist) * 0.04; 
+                        velocities[ix] += dx * force;
+                        velocities[iy] += dy * force;
+                    }
+
+                    // 弹性拉回初始轨道 (但带着阻尼，显得吃力)
+                    velocities[ix] += (startPositions[ix] - px) * 0.012;
+                    velocities[iy] += (startPositions[iy] - py) * 0.012;
+                    velocities[iz] += (startPositions[iz] - pz) * 0.012;
+
+                    velocities[ix] *= 0.86;
+                    velocities[iy] *= 0.86;
+                    velocities[iz] *= 0.86;
+
+                    posArray[ix] += velocities[ix];
+                    posArray[iy] += velocities[iy];
+                    posArray[iz] += velocities[iz];
+                }
+                positionsAttr.needsUpdate = true;
+
+                // 镜头跟随视线摇晃，增强空间的高熵失控感
+                camera.position.x += (targetX * 0.2 - camera.position.x) * 0.05;
+                camera.position.y += (targetY * 0.2 - camera.position.y) * 0.05;
+                camera.lookAt(scene.position);
+            } else {
+                // 绝对主权态坍缩
+                if (collapseProgress < 1.0) {
+                    collapseProgress += 0.015; 
+                    const ease = Math.pow(collapseProgress, 4); // 极其暴力的向心坍缩
+
                     for (let i = 0; i < particleCount; i++) {
-                        posArray[i * 3] = startPositions[i * 3] * (1 - ease); 
-                        posArray[i * 3 + 1] = startPositions[i * 3 + 1] * (1 - ease);
-                        posArray[i * 3 + 2] = startPositions[i * 3 + 2] * (1 - ease);
+                        posArray[i*3] -= posArray[i*3] * ease * 0.3; 
+                        posArray[i*3+1] -= posArray[i*3+1] * ease * 0.3;
+                        posArray[i*3+2] -= posArray[i*3+2] * ease * 0.3;
                     }
                     positionsAttr.needsUpdate = true;
                     
-                    // 奇点暴涨接管空间
-                    singularity.scale.set(ease, ease, ease);
-                    dirLight1.intensity = ease * 3; // 冷光点亮金属
-                    dirLight2.intensity = ease * 1.5;
-                    
-                    // 彻底粉碎平庸粒子的存在感
+                    // 奇点暴涨，点亮冷极光
+                    singGroup.scale.set(ease, ease, ease);
+                    dirLightDynamic.intensity = ease * 3; 
+                    dirLightSide.intensity = ease * 1.5;
                     particleSystem.material.opacity = 1 - Math.pow(ease, 0.5);
                     
-                    // 镜头极速拉近带来压迫感
+                    // 镜头归位，压迫感推近
+                    camera.position.x += (0 - camera.position.x) * 0.1;
+                    camera.position.y += (0 - camera.position.y) * 0.1;
                     camera.position.z += (20 - camera.position.z) * 0.05;
+                    camera.lookAt(scene.position);
                 } else {
-                    // 奇点永恒态
-                    singularity.rotation.y -= 0.015; // 极寒自转
-                    singularity.rotation.x -= 0.005;
-                    laserRing.rotation.z -= 0.1; // 激光切割线高频扫射
+                    // 奇点永恒态：眼神完全统治光影与奇点的微小偏转
+                    singGroup.rotation.y += (targetX * 0.05 - singGroup.rotation.y) * 0.1;
+                    singGroup.rotation.x += (targetY * 0.05 - singGroup.rotation.x) * 0.1;
+                    
+                    dirLightDynamic.position.set(targetX, targetY, 15);
+                    laserRing.rotation.z -= 0.15; 
                 }
             }
             renderer.render(scene, camera);
